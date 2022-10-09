@@ -73,6 +73,9 @@ export class EntityManager {
 
     this._entities.push(entity);
     this.eventDispatcher.dispatchEvent(ENTITY_CREATED, entity);
+    this.world.onEntityChanged.forEach(callback => {
+      callback(this._entities);
+    });
     return entity;
   }
 
@@ -225,6 +228,9 @@ export class EntityManager {
       delete this._entitiesByNames[entity.name];
     }
     entity._pool.release(entity);
+    this.world.onEntityChanged.forEach(callback => {
+      callback(this._entities);
+    });
   }
 
   /**

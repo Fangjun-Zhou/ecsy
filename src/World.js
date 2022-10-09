@@ -18,6 +18,9 @@ export class World {
     this.entityManager = new EntityManager(this);
     this.systemManager = new SystemManager(this);
 
+    // Entity change callbacks.
+    this.onEntityChanged = [];
+
     this.enabled = true;
 
     this.eventQueues = {};

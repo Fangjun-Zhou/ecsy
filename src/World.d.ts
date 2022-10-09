@@ -19,6 +19,13 @@ export class World<EntityType extends Entity = Entity> {
   enabled: boolean;
 
   /**
+   *Entity change callback.
+   *
+   * @memberof World
+   */
+  onEntityChanged: Array<(entities: Array<EntityType>) => void>;
+
+  /**
    * Create a new World.
    */
   constructor(options?: WorldOptions);
