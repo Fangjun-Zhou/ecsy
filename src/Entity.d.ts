@@ -10,6 +10,15 @@ export class Entity {
   id: number;
 
   /**
+   * The unique name of this entity.
+   * Duplicate names may raise an error by EntityManager.
+   *
+   * @type {string}
+   * @memberof Entity
+   */
+  name: string;
+
+  /**
    * Whether or not the entity is alive or removed.
    */
   alive: boolean;
