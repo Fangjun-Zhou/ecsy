@@ -82,6 +82,10 @@ export class Entity {
         );
       }
     }
+
+    // Call component changed callback.
+    component.onComponentChanged(component);
+
     return component;
   }
 

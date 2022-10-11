@@ -17,6 +17,7 @@ export class Component<C> {
   static schema: ComponentSchema;
   static isComponent: true;
   constructor(props?: Partial<Omit<C, keyof Component<any>>> | false);
+  onComponentChanged: (component: Component<C>) => void;
   copy(source: this): this;
   clone(): this;
   reset(): void;

@@ -22,6 +22,8 @@ export class Component {
       }
     }
 
+    this.onComponentChanged = (component) => {};
+
     this._pool = null;
   }
 
