@@ -37,6 +37,7 @@ export class EntityManager {
     this._nextEntityId = 0;
 
     this._entitiesByNames = {};
+    this._entitiesById = {};
 
     this._queryManager = new QueryManager(this);
     this.eventDispatcher = new EventDispatcher();
@@ -56,10 +57,18 @@ export class EntityManager {
     return this._entitiesByNames[name];
   }
 
+  getEntityById(id) {
+    return this._entitiesById[id];
+  }
+
+  idExists(id) {
+    return this._entitiesById[id] !== undefined;
+  }
+
   /**
    * Create a new entity
    */
-  createEntity(name) {
+  createEntity(name, id) {
     var entity = this._entityPool.acquire();
     entity.alive = true;
     entity.name = name || "";
@@ -70,6 +79,15 @@ export class EntityManager {
         this._entitiesByNames[name] = entity;
       }
     }
+    // If the id is specified, use it.
+    if (id) {
+      entity.id = id;
+      // Remove all the duplicated in the pool free list.
+      this._entityPool.freeList = this._entityPool.freeList.filter(
+        e => e.id !== id
+      )
+    }
+    this._entitiesById[entity.id] = entity;
 
     this._entities.push(entity);
     this.eventDispatcher.dispatchEvent(ENTITY_CREATED, entity);
@@ -227,6 +245,10 @@ export class EntityManager {
     if (this._entitiesByNames[entity.name]) {
       delete this._entitiesByNames[entity.name];
     }
+    if (this._entitiesById[entity.id]) {
+      delete this._entitiesById[entity.id];
+    }
+
     entity._pool.release(entity);
     this.world.onEntityChanged.forEach(callback => {
       callback(this._entities);

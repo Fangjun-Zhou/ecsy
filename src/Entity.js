@@ -6,7 +6,9 @@ export class Entity {
     this._entityManager = entityManager || null;
 
     // Unique ID for this entity
-    this.id = entityManager._nextEntityId++;
+    do{
+      this.id = entityManager._nextEntityId++;
+    } while (entityManager.idExists(this.id));
     this.name = "";
 
     // List of components types the entity has

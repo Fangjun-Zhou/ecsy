@@ -85,6 +85,19 @@ export class World<EntityType extends Entity = Entity> {
   /**
    * Create a new entity
    */
-  createEntity(name?: string): EntityType
+  createEntity(name?: string, id?: number): EntityType
 
+  /**
+   * Get an entity by its name.
+   * 
+   * @param name the name of the entity.
+   */
+  getEntityByName(name: string): EntityType | null;
+
+  /**
+   * Get an entity by its id.
+   * 
+   * @param id the id of the entity.
+   */
+  getEntityById(id: number): EntityType | null;
 }
