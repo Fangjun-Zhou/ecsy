@@ -88,6 +88,11 @@ export class World<EntityType extends Entity = Entity> {
   createEntity(name?: string, id?: number): EntityType
 
   /**
+   * Method to get all entities in the world.
+   */
+  getAllEntities(): Array<EntityType>;
+
+  /**
    * Get an entity by its name.
    * 
    * @param name the name of the entity.

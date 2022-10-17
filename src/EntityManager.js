@@ -61,6 +61,10 @@ export class EntityManager {
     return this._entitiesById[id];
   }
 
+  getAllEntities() {
+    return this._entities;
+  }
+
   idExists(id) {
     return this._entitiesById[id] !== undefined;
   }
