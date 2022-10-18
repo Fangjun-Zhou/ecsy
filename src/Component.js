@@ -25,6 +25,9 @@ export class Component {
     this.onComponentChanged = (component) => {};
 
     this._pool = null;
+
+    this.onInspector = null;
+    this.useDefaultInspector = true;
   }
 
   copy(source) {
