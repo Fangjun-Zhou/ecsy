@@ -1,12 +1,13 @@
 import Query from "./Query.js";
 import wrapImmutableComponent from "./WrapImmutableComponent.js";
+import { COMPONENT_CHANGE_EVENT } from "./Component.js";
 
 export class Entity {
   constructor(entityManager) {
     this._entityManager = entityManager || null;
 
     // Unique ID for this entity
-    do{
+    do {
       this.id = entityManager._nextEntityId++;
     } while (entityManager.idExists(this.id));
     this.name = "";
@@ -86,7 +87,7 @@ export class Entity {
     }
 
     // Call component changed callback.
-    component.onComponentChanged(component);
+    component.eventEmitter.emit(COMPONENT_CHANGE_EVENT, component);
 
     return component;
   }

@@ -1,3 +1,5 @@
+import EventEmitter from "events";
+
 export class Component {
   constructor(props) {
     if (props !== false) {
@@ -22,7 +24,7 @@ export class Component {
       }
     }
 
-    this.onComponentChanged = (component) => {};
+    this.eventEmitter = new EventEmitter();
 
     this._pool = null;
 
@@ -97,3 +99,5 @@ Component.isComponent = true;
 Component.getName = function () {
   return this.displayName || this.name;
 };
+
+export const COMPONENT_CHANGE_EVENT = "COMPONENT_CHANGE_EVENT";

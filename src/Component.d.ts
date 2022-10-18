@@ -1,4 +1,5 @@
 import { PropType } from "./Types";
+import { EventEmitter } from "events";
 
 /**
  * Base class for components.
@@ -17,7 +18,7 @@ export class Component<C> {
   static schema: ComponentSchema;
   static isComponent: true;
   constructor(props?: Partial<Omit<C, keyof Component<any>>> | false);
-  onComponentChanged: (component: Component<C>) => void;
+  eventEmitter: EventEmitter;
   copy(source: this): this;
   clone(): this;
   reset(): void;
@@ -25,11 +26,11 @@ export class Component<C> {
 
   /**
    * Custom inspector implementation for the component.
-   * 
+   *
    * @param componentDiv the div element that will contain the inspector.
    * @param onComponentChanged callback that will be called when the component is changed.
    */
-  onInspector: (componentDiv: HTMLDivElement)=>void | null;
+  onInspector: (componentDiv: HTMLDivElement) => void | null;
 
   /**
    * If keep the default inspector for the component.
@@ -42,3 +43,5 @@ export interface ComponentConstructor<C extends Component<any>> {
   isComponent: true;
   new (props?: Partial<Omit<C, keyof Component<any>>> | false): C;
 }
+
+export const COMPONENT_CHANGE_EVENT;

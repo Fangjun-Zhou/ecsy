@@ -79,5 +79,9 @@
     "typedoc": "^0.15.8",
     "typedoc-plugin-markdown": "^2.2.16",
     "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "@types/events": "^3.0.0",
+    "events": "^3.3.0"
   }
 }
