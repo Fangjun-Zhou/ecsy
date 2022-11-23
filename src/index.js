@@ -1,6 +1,6 @@
 export { World } from "./World.js";
 export { System, Not } from "./System.js";
-export { Component } from "./Component.js";
+export { Component, COMPONENT_CHANGE_EVENT } from "./Component.js";
 export { SystemStateComponent } from "./SystemStateComponent.js";
 export { TagComponent } from "./TagComponent.js";
 export { ObjectPool } from "./ObjectPool.js";
