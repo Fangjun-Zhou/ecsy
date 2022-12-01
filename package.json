@@ -1,14 +1,14 @@
 {
-  "name": "ecsy",
-  "version": "0.4.2",
+  "name": "ecsy-wd",
+  "version": "0.4.3",
   "description": "Entity Component System in JS",
   "main": "lib/index.js",
   "module": "src/index.js",
   "types": "src/index.d.ts",
   "scripts": {
-    "build": "npm run clean && rollup -c && npm run docs && npm run build:cjs",
+    "build": "npm run clean && rollup -c && npm run build:cjs",
     "build:cjs": "rimraf lib && babel src -d lib",
-    "docs": "cp README.md site/docs/README.md && rimraf site/docs/api/_sidebar.md; typedoc --readme none --mode file --excludeExternals --plugin typedoc-plugin-markdown  --theme site/docs/theme --hideSources --hideBreadcrumbs --out site/docs/api/ --includeDeclarations --includes 'src/**/*.d.ts' src; touch site/docs/api/_sidebar.md",
+    "docs": "copy README.md site/docs/README.md && rimraf site/docs/api/_sidebar.md; typedoc --readme none --mode file --excludeExternals --plugin typedoc-plugin-markdown  --theme site/docs/theme --hideSources --hideBreadcrumbs --out site/docs/api/ --includeDeclarations --includes 'src/**/*.d.ts' src; touch site/docs/api/_sidebar.md",
     "dev:docs": "nodemon -e ts -x 'npm run docs' -w src",
     "dev": "concurrently --names 'ROLLUP,DOCS,HTTP' -c 'bgBlue.bold,bgYellow.bold,bgGreen.bold' 'rollup -c -w -m inline' 'npm run dev:docs' 'npm run dev:server'",
     "dev:server": "http-server -c-1 -p 8080 --cors ./site",
